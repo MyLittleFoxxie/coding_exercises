@@ -1,0 +1,9 @@
+FROM mysql:latest
+
+ENV MYSQL_ROOT_PASSWORD=123456
+
+# Copy custom configuration file (if you have any)
+# COPY my-custom.cnf /etc/mysql/conf.d/
+
+# You can add initialization scripts by copying them into /docker-entrypoint-initdb.d
+COPY ./init-db.sql /docker-entrypoint-initdb.d/

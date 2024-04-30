@@ -1,0 +1,11 @@
+# Start with the official Rust image to compile the Rust application
+FROM rust:latest as builder
+WORKDIR /usr/src/rust_mysql_project
+COPY . .
+RUN cargo install --path .
+
+# Now use Debian slim image for the runtime environment
+FROM debian:buster-slim
+RUN apt-get update && apt-get install -y default-libmysqlclient-dev && rm -rf /var/lib/apt/lists/*
+COPY --from=builder /usr/local/cargo/bin/rust_mysql_project /usr/local/bin/rust_mysql_project
+CMD ["rust_mysql_project"]

@@ -1,0 +1,28 @@
+[package]
+name = "rust_mysql_project"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+diesel = { version = "2.1.0", features = ["mysql"] }
+dotenvy = "0.15"
+chrono = { version = "0.4.37", features = ["serde"] }
+mysql = "*"
+async-std = "1.12.0"
+sqlx = { version = "0.7", default-features = false, features = [
+    "runtime-async-std",
+    "macros",
+    "mysql",
+    "time",
+    "chrono",
+    "json"
+] }
+time = { version = "0.3.22", default-features = false, features = [
+    "formatting",
+    "macros",
+] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tokio = { version = "1", features = ["full"] }

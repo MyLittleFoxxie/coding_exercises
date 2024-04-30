@@ -1,0 +1,26 @@
+#docker-compose up --build
+
+version: '3.8'
+services:
+  db:
+    build:
+      context: ./mysql
+      dockerfile: Dockerfile.mysql
+    volumes:
+      - db-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  # app:
+  #   build:
+  #     context: ./rust_mysql_project
+  #     dockerfile: Dockerfile.rust
+  #   volumes:
+  #     - ./rust_mysql_project:/usr/src/rust_mysql_project
+  #   depends_on:
+  #     - db
+  #   env_file:
+  #     - ./rust_mysql_project/.env
+
+volumes:
+  db-data:
